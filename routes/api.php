@@ -29,13 +29,10 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('me', [AuthController::class, 'me']);
 
-Route::resource('books', BookController::class)->except([
-    'create', 'edit'
-]);
-
-Route::resource('authors', AuthorController::class)->except([
-    'create', 'edit'
-]);
+Route::get('/books', [BookController::class, 'show']);
+Route::get('/books/{id}', [BookController::class, 'index']);
+Route::get('/authors', [AuthorController::class, 'show']);
+Route::get('/authors/{id}', [AuthorController::class, 'index']);
 
 //protected routes yang dijga sm sanctum api
 Route::middleware('auth:sanctum')->group(function () {
